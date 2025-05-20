@@ -19,3 +19,16 @@ model User {
   name    String
   password String
 }
+
+model Concurso {
+  id                   String  @id @default(auto()) @map("_id") @db.ObjectId
+  name                 String
+  orgao                String
+  dataInscricaoInicio  String
+  dataInscricaoFim     String
+  dataProva            String
+  estado               String
+  numVagas             Int
+  banca                String
+  salario              String
+}
