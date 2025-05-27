@@ -26,5 +26,29 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/getOptions", async (req, res) => {
+
+  if (req.method !== "GET") {
+    return res.status(405).json({message: 'Método não permitido'})
+  }
+
+  try {
+    const options = await prisma.concurso.findMany({
+      select: {
+        id: true,
+        name: true
+      },
+      orderBy: {
+        name: 'asc'
+      }
+    })
+
+    res.status(200).json(options)
+  } catch (error) {
+    console.error('Erro ao buscar opções: ', error)
+    res.status(500).json({message: "Erro no servidor"})
+  }
+})
+
 
 export default router;

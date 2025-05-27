@@ -12,7 +12,7 @@ app.use(express.json())
 
 app.use(cors())
 
-app.use ('/lista', auth, privateRoutes)
+app.use ('/rotinas', auth, privateRoutes)
 
 app.use('/usuarios', publicRoutes)
 
