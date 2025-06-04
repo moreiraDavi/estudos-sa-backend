@@ -19,6 +19,7 @@ model User {
   name          String
   password      String
   preferencias  Preferencia[]
+  rotinas       Rotina[]
 }
 
 model Concurso {
@@ -33,6 +34,7 @@ model Concurso {
   banca                String
   salario              String
   preferencias         Preferencia[]
+  rotinas              Rotina[]
 }
 
 model Preferencia {
@@ -43,4 +45,31 @@ model Preferencia {
   concurso             Concurso  @relation(fields: [concursoId], references: [id])
   diasEstudo           Int
   turno                String
+  duracao              String
+}
+
+model Rotina {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String     @db.ObjectId
+  user          User       @relation(fields: [userId], references: [id])
+  concursoId    String     @db.ObjectId
+  concurso      Concurso   @relation(fields: [concursoId], references: [id])
+  semana        Int
+
+  conteudo1     String?
+  horario1      String?
+  conteudo2     String?
+  horario2      String?
+  conteudo3     String?
+  horario3      String?
+  conteudo4     String?
+  horario4      String?
+  conteudo5     String?
+  horario5      String?
+  conteudo6     String?
+  horario6      String?
+  conteudo7     String?
+  horario7      String?
+
+  criadoEm      DateTime   @default(now())
 }
