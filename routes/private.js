@@ -23,6 +23,21 @@ router.post("/create-com-rotina", async (req, res) => {
         .status(400)
         .json({ message: "Limite de 6 preferências atingido." });
     }
+
+    const jaExiste = await prisma.preferencia.findFirst({
+      where: {
+        userId,
+        concursoId,
+      },
+    });
+    if (jaExiste) {
+      return res
+        .status(400)
+        .json({
+          message: "Você já possui uma preferência para este concurso.",
+        });
+    }
+
     pref = await prisma.preferencia.create({
       data: { userId, concursoId, diasEstudo, turno, duracao },
       include: { concurso: { select: { name: true } } },
