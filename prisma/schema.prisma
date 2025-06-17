@@ -42,7 +42,6 @@ model Preferencia {
   concursoId           String    @db.ObjectId
   concurso             Concurso  @relation(fields: [concursoId], references: [id])
   diasEstudo           Int
-  turno                String
   duracao              String
 }
 

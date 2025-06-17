@@ -55,7 +55,7 @@ export const HFService = {
     } = options;
 
     try {
-      const model = process.env.HF_MODEL || "meta-llama/Llama-3.1-8B-Instruct";
+      const model = process.env.HF_MODEL || "meta-llama/Llama-3.3-70B-Instruct";
 
       const response = await hf.post(
         `/models/${model}`,

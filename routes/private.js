@@ -9,12 +9,12 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 router.post("/create-com-rotina", async (req, res) => {
-  const { concursoId, diasEstudo, turno, duracao } = req.body;
+  const { concursoId, diasEstudo, duracao } = req.body;
   const userId = req.userId;
   if (!userId)
     return res.status(401).json({ message: "Usuário não autenticado." });
 
-  // 1️⃣ Cria a preferência
+  // 1 - Cria a preferência
   let pref;
   try {
     const count = await prisma.preferencia.count({ where: { userId } });
@@ -39,7 +39,7 @@ router.post("/create-com-rotina", async (req, res) => {
     }
 
     pref = await prisma.preferencia.create({
-      data: { userId, concursoId, diasEstudo, turno, duracao },
+      data: { userId, concursoId, diasEstudo, duracao },
       include: { concurso: { select: { name: true } } },
     });
   } catch (err) {
@@ -47,7 +47,7 @@ router.post("/create-com-rotina", async (req, res) => {
     return res.status(500).json({ message: err.message });
   }
 
-  // 2️⃣ Gera uma chamada para cada semana (até duracao, no máximo 5)
+  // 2 - Gera uma chamada para cada semana (até duracao, no máximo 5)
   const totalSemanas = parseInt(pref.duracao, 10);
   const prevContents = [];
   const semanasArrays = [];
@@ -98,7 +98,7 @@ router.post("/create-com-rotina", async (req, res) => {
     }
   }
 
-  // 3️⃣ Monta os payloads para salvar no banco
+  // 3️ - Monta os payloads para salvar no banco
   const payloads = semanasArrays.map((objSemana) => ({
     userId,
     concursoId: pref.concursoId,
@@ -112,7 +112,7 @@ router.post("/create-com-rotina", async (req, res) => {
     conteudo7: objSemana.conteudo7,
   }));
 
-  // 4️⃣ Salva todas as rotinas de uma vez no DB
+  // 4️ - Salva todas as rotinas de uma vez no DB
   let rotinasCriadas;
   try {
     rotinasCriadas = await RotinaService.criarMultiplas(payloads);

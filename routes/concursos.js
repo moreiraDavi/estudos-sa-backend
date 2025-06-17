@@ -50,5 +50,22 @@ router.get("/getOptions", async (req, res) => {
   }
 })
 
+router.get("/nome/:id", async (req, res) => {
+  const {id} = req.params;
+  try {
+    const concurso = await prisma.concurso.findUnique({
+      where: { id: id},
+      select: { name: true }
+    })
+    if (!concurso) {
+      return res.status(404).json({ message: "Concurso não encontrado" });
+    }
+    res.json({name: concurso.name});
+  } catch(err) {
+    console.error("Erro ao buscar nome do concurso: ", err)
+    res.status(500).json({ message: "Erro ao buscar o nome do concurso." });
+  }
+})
+
 
 export default router;
