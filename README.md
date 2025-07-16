@@ -82,7 +82,7 @@ npm start
 
 Caso queira me contatar ou dar feedback:
 
-- [LinkedIn](www.linkedin.com/in/davi-moreira-631974289)
+- LinkedIn:www.linkedin.com/in/davi-moreira-631974289
 - Email: moreiradavi160@gmail.com
 
 ---
