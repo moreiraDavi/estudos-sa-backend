@@ -1,5 +1,13 @@
 # Estudos SA — Backend 🧠📚
 
+![Node.js](https://img.shields.io/badge/Node.js-20.0.0-339933?logo=nodedotjs&logoColor=white&style=for-the-badge)
+![Express](https://img.shields.io/badge/Express.js-4.18.2-000000?logo=express&logoColor=white&style=for-the-badge)
+![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?logo=prisma&logoColor=white&style=for-the-badge)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb&logoColor=white&style=for-the-badge)
+![JWT](https://img.shields.io/badge/JWT-Autenticação-000000?logo=jsonwebtokens&logoColor=white&style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow?style=for-the-badge)
+
 Este é o backend da aplicação **Estudos SA**, um projeto acadêmico desenvolvido para gerar rotinas de estudo personalizadas para concursos públicos, com auxílio de inteligência artificial (Hugging Face API).
 
 ## 🔧 Tecnologias Utilizadas
